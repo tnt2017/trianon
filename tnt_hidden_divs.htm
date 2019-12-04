@@ -1,0 +1,200 @@
+<table class="ds_box" cellpadding="0" cellspacing="0" id="ds_conclass" style="display: none;"><tbody><tr><td id="ds_calclass"></td></tr></tbody></table>
+
+<div id=kolDlg>
+    <table border=0 cellspacing=1  >
+    <tr><td width="20"><img src="images/dg1.png" id=bn01 /></td>
+      <td width="20" ><img src="images/dg2.png" id=bn02 /></td>
+      <td width="20"><img src="images/dg3.png" id=bn03 /></td>
+      <td width="20"><img src="images/dgC.png" id=bnCa /></td>
+      <td ><img src="images/dgE.png" id=bnEx /></td>
+    </tr><tr><td><img src="images/dg4.png" id=bn04 /></td>
+      <td><img src="images/dg5.png" id=bn05 /></td>
+      <td><img src="images/dg6.png" id=bn06 /></td>
+      <td><img src="images/dgD.png" id=bnDe /></td>
+    </tr><tr><td><img src="images/dg7.png" id=bn07 /></td>
+      <td><img src="images/dg8.png" id=bn08 /></td>
+      <td><img src="images/dg9.png" id=bn09 /></td>
+      <td><img src="images/dg0.png" id=bn00 /></td>
+    </tr></table>
+    </div>
+    <div id=picPopup><img src="images/close.png" id=picExit />
+    <table cellspacing=2></table>
+    <img src="" width="360" height="360" id=picImg />
+    </div>
+    <div id=fxbtn><table cellspacing=3>
+    <tr><td><img src="images/uparr.png"></img></td><td>в корень</td><td>наверх</td>
+    <td></td></tr></table>
+    </div>
+
+
+
+<div id="enldlg0" style="left: 339.317px; top: 820px; display: block;">
+   <b>Изменение залистовки </b><br>
+
+<form name="frm_zalist" id="frm_zalist">
+  <input type="radio" name="radZalist" id="radZalist" value="1" checked> вкл. предложение<br>
+  <input type="radio" name="radZalist" id="radZalist" value="2"> удалить предложение<br>
+  <input type="radio" name="radZalist" id="radZalist" value="3"> вкл. спецификацию<br> 
+  <input type="radio" name="radZalist" id="radZalist" value="4"> удалить специф-ю<br>
+</form>
+
+ID: <input type="text" name="sEnlT" id="div1_id" value=""><br>
+<input type="button" name="bnEnlOk" value="Ok"  id="div1_ok"  onclick="HideDiv1()"> 
+<input type="button" name="bnEnlCancel" value="Отмена"  onclick="HideDiv1()">
+</div>
+
+
+<div id="enldlg1" style="left: 339.317px; top: 820px; display: block;">
+   <b>Изменение залистовки </b><br>
+
+<form name="frm_zalist" id="frm_zalist">
+  <input type="radio" name="radZalist" id="radZalist" value="1" checked> вкл. предложение<br>
+  <input type="radio" name="radZalist" id="radZalist" value="2"> удалить предложение<br>
+  <input type="radio" name="radZalist" id="radZalist" value="3"> вкл. спецификацию<br> 
+  <input type="radio" name="radZalist" id="radZalist" value="4"> удалить специф-ю<br>
+</form>
+
+ID: <input type="text" name="sEnlT" id="div1_id" value=""><br>
+<input type="button" name="bnEnlOk" value="Ok"  id="div1_ok"  onclick="MakeZalist(); HideDiv1()"> 
+<input type="button" name="bnEnlCancel" value="Отмена"  onclick="HideDiv1()">
+</div>
+
+
+
+
+<div id="enldlg2" style="left: 339.317px; top: 820px; display: block;">
+  <b>Заказ</b><br>
+   ID: <input type="text" name="sEnlT" id="div2_id" value=""> <br>
+   Штук: <input type="text" name="sEnlT" id="div2_vvod" value=""> <br>
+  <input type="button" name="bnEnlOk" value="Ok" id="div2_ok" > 
+  <input type="button" name="bnEnlCancel" value="Отмена" onclick="HideDiv2()"> 
+</div>
+
+
+
+<div id="enldlg3" style="left: 339.317px; top: 820px; display: block;">
+<form name="frm_waitlist" id="frm_waitlist">
+
+  <b>Лист ожидания</b><br>
+   IDTOV: <input type="text" name="WAITLIST_IDTOV"  id="WAITLIST_IDTOV"  value=""> <br>
+   IDADR: <input type="text" name="WAITLIST_IDADR"  id="WAITLIST_IDADR"  value=""> <br>
+
+   Сколько штук: <input type="text" name="WAITLIST_KOL"  id="WAITLIST_KOL"  value="1"> <br>
+   Ждать до: <input type="text" name="WAITLIST_DT_TILL"  id="WAITLIST_DT_TILL"  value="22.11.2019"> <br>
+   Ожидается поставка: <input type="text" name="WAITLIST_OJIDAETSYA"  id="WAITLIST_OJIDAETSYA"  value="22.11.2019"> <br>
+
+  <input type="button" name="bnEnlOk" value="Ok"  id="div3_ok"  onclick="HideDiv3()"> 
+  <input type="button" name="bnEnlCancel" value="Отмена" onclick="HideDiv3()"> 
+  </form>
+
+</div>
+
+
+
+
+<div id="enldlg4" style="left: 339.317px; top: 820px; display: block;">
+<form name="frm_monitoring" id="frm_monitoring">
+  <b>Мониторинг цен:</b><br>
+
+  <div style="display:none;">
+   ID: <input type="text" name="div4_idTov"  id="div4_idTov"  value=""> <br>
+   IdOrg: <input type="text" name="div4_idOrg"  id="div4_idOrg"  value=""> <br>
+   idAdr: <input type="text" name="div4_idAdr"  id="div4_idAdr"  value=""> <br>
+   idKonkur: <input type="text" name="div4_idKonkur"  id="div4_idKonkur"  value=""> <br>
+  </div>   
+
+<input type="radio" name="radio_monitoring" value="1" checked>мониторинг цен полки<br> 
+<input type="radio" name="radio_monitoring" value="2" >мониторинг цен конкурента<br>
+
+<select name="konk_org" onClick="OnChangeSelect();">
+   <option value="0" selected="">Невыбрано</option>
+   <option value="20687">Allpostel конкурент ООО Куркина ЛП</option>
+   <option value="11735">Акварель ТКконкурет ООО Зингаев РВ</option>       
+   <option value="1800469">ГК НЭКСконкурент ООО Папшева  МВ</option>       
+   <option value="20271">Голубев конкурент ИП Папшева  МВ</option>       
+   <option value="1901030">Интерра Парфюмконкурент ООО Басалаева ВА</option>       
+   <option value="1901053">МДК конкурент ООО Басалаева ВА</option>       
+   <option value="1900073">Магнитконкурент ООО Папшева  М</option>       
+   <option value="20754">Меркурийконкурент ООО Папшева  МВ</option>       
+   <option value="11773">Ниссаконкурент ООО Зингаев РВ</option>       
+   <option value="11775">Оптсервисконкурент ООО Зингаев РВ</option>       
+   <option value="11774">Парфюм Алтайконкурент ООО Папшева  МВ</option>       
+   <option value="1900370">Планетаконкурент Сорокин Томск ООО Нестерова АО</option>       
+   <option value="1900096">Пятерочка конкурент  Папшева  М</option>       
+   <option value="1801291">Роса конкурент ООО Марахонова  ЯА</option>       
+   <option value="19910">Савелийконкурент ООО Перепечаева ПИ</option>       
+   <option value="1800258">Санг Томскконкурент ООО Папшева  МВ</option>       
+   <option value="1801356">СангАлтайконкурент ООО Марахонова  ЯА</option>       
+   <option value="4983">Сибирская Парфюмерная Компанияконкурент ООО Папшева  МВ</option>       
+   <option value="1900205">Смирнов беттериз конкурентбывш Диаманд ИП Папшева  М</option>       
+   <option value="20679">Стартекс конкурент ООО Куркина ЛП</option>       
+   <option value="20531">Стройторгконкурент ООО Зингаев РВ</option>       
+   <option value="1800129">ТОРГТЕХНИКА конкурент ООО Марахонова Развитие ЯА</option>       
+   <option value="11821">Тропин Константин Александровичконкурент ИП Папшева  МВ</option>       
+   <option value="1901126">Форнстронгконкурент ООО Басалаева ВА</option>       
+   <option value="1900273">Эль Трейдконкурент ООО Нестерова АО</option>       
+ </select>
+
+ <br>
+ Цена:
+<input type="text" name="div4_price" value=""  id="div4_price" > <br>
+<input type="button" name="bnEnlOk" value="Ok" id="div4_ok"  onclick="HideDiv4()"> 
+<input type="button" name="bnEnlCancel" value="Отмена" onclick="HideDiv4()"> 
+</form>  
+</div>
+
+
+
+<div id="enldlg5" style="left: 339.317px; top: 820px; display: block; padding: 20px;">
+<form name="frm_discount" id="frm_discount">
+
+<div style="display: none;">
+  IdOrg: <input type="text" name="div5_idOrg"  id="div5_idOrg"  value=""> <br>   
+  idAdr: <input type="text" name="div5_idAdr"  id="div5_idAdr"  value=""> <br>
+  IdGrp: <input type="text" name="div5_idGrp"  id="div5_idGrp"  value=""> <br>
+  IdTov: <input type="text" name="div5_idTov"  id="div5_idTov"  value=""> <br>
+</div>
+
+  НОВАЯ ЦЕНА: <input type="text" name="div5_new_price"  id="div5_new_price"  value="" size="5" > <br>
+  ТЕКУЩАЯ ЦЕНА: <input type="text" name="div5_current_price"  id="div5_current_price"  value="" size="5" readonly> <br>
+  БАЗОВАЯ ЦЕНА: <input type="text" name="div5_price_b"  id="div5_price_b"  value="" readonly size="5" > <br>
+  СМЦ: <input type="text" name="div5_smp"  id="div5_smp"  value="" readonly size="5" > <br>
+  МАКС СКИДКА: <input type="text" name="div5_max_discount"  id="div5_max_discount"  value=""  size="5"  readonly> <br>
+
+  <b>Скидка на группу</b> <br>
+  <input type="text" name="grp111" value=""  id="" > <br>
+  <input type="text" name="div5_discount_grp" value=""  id="div5_discount_grp" > <br>
+  <input name="navse_adresa" type="checkbox" checked>На все адреса<br>
+  <input type="button" name="bnEnlOk" value="Применить на группу" id="div5_ok1"  onclick="HideDiv5()"> 
+
+  <br>
+  <b>Скидка на товар</b><br>
+   <input type="text" name="tovar111" value=""  id="" > <br>
+  <input type="text" name="div5_discount_tovar" value=""  id="div5_discount_tovar" > <br>
+  <input type="button" name="bnEnlOk" value="Применить на товар" id="div5_ok2"  onclick="HideDiv5()"> 
+  <br>
+
+  <input type="button" name="bnEnlCancel" value="Отмена" onclick="HideDiv5()"> 
+  </form>
+
+
+</div>
+
+
+<div id="enldlg6" style="left: 339.317px; top: 820px; display: block;">
+ 
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
