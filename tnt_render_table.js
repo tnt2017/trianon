@@ -2,21 +2,15 @@ function RenderBasket(Mybasket)
 {
   console.log('RenderBasket start');
 
-  var sss="<p>";
+  var sss="<h2>Корзина</h2>";
   sss+='<span id="zak_type"></span>';
-  sss+='<span class=off>Цена строки :</span><span id=costLn></span>';
-  sss+='<span class=off>Нц :</span><span id=nacZak></span><br>';
-  sss+="<p id='msg'></p>";
 
+  sss+="<p id='msg'></p>";
   sss+='<input type=button name=bnMakeN value="Создать накладную"  onClick="processDoc();">';
   sss+='<input type=button name=bnMakeN2 value="Создать счет"  onClick="processDoc2();">';
   sss+='<input type=button name=bnNew value="Очистить корзину" onclick="clearZakaz();" >'; 
   sss+='</p>';
-
-  sss+='<p>';
-  sss+='<span class=off>Цена строки :</span><span id=costLn2></span>';
-  sss+='<span class=off>Нц :</span><span id=nacZak2></span>';
-  sss+='</p>';
+ 
   
   sss+="<p><table border=1 cellspacing=2 class='myclass333'>";
   sss+="<tr><th>#</th>";
@@ -27,8 +21,6 @@ function RenderBasket(Mybasket)
   sss+="<th>заказ</th>";
   sss+="<th>остаток</th>";
   sss+="<th>цена</th>";
-  //sss+="<th>M</th>";
-  
   var disc_style="";
 
   if(!frmMain.chkShowDisc.checked)
@@ -38,8 +30,15 @@ function RenderBasket(Mybasket)
   sss+="<th " + disc_style + ">% до смц</th>"
   sss+="<th " + disc_style + ">смц</th>"
   sss+="<th " + disc_style + ">баз. цена</th>"
+
+  sss+="<th>Сумма</th>";
+  sss+="<th>X</th>";
+
   sss+="</tr>";
   sss+="<tbody id=zakaz>";
+
+  var SUMMA=0;
+  var ITOGO=0;
 
   if(Mybasket!=undefined)
   {
@@ -51,25 +50,36 @@ function RenderBasket(Mybasket)
         sss+="<td>" + Mybasket[i].ID + "</td>";
         sss+="<td>" + Mybasket[i].NAME + "</td>";
         sss+="<td>" + Mybasket[i].NAME + "</td>";
-        sss+="<td>" + Mybasket[i].KOL + "</td>";
+        sss+="<td onclick=\"globalBasket[" + i + "].KOL = prompt('Введите количество:'," + Mybasket[i].KOL + "); RenderBasket(globalBasket);\">" + Mybasket[i].KOL + "</td>";
         sss+="<td>" + Mybasket[i].OST + "</td>";
-        sss+="<td>" + Mybasket[i].PRICE_ORG + "</td>";
+        sss+="<td onclick=\"globalBasket[" + i + "].PRICE_ORG = prompt('Введите цену:'," + Mybasket[i].PRICE_ORG + "); RenderBasket(globalBasket);\">" + Mybasket[i].PRICE_ORG + "</td>";
+        sss+="<td " + disc_style + ">" + Mybasket[i].MAXDISC + "</td>";
+        sss+="<td " + disc_style + ">" + Mybasket[i].SMP + "</td>";
+        sss+="<td " + disc_style + ">" + Mybasket[i].PRICE_B + "</td>";
+        
+        SUMMA=Mybasket[i].KOL*Mybasket[i].PRICE_ORG;
+       // SUMMA=parseFloat(SUMMA).toFixed(2);
+        ITOGO+=SUMMA;
 
-        sss+="<td " + disc_style + ">" + Myobj[i].MAXDISC + "</td>";
-        sss+="<td " + disc_style + ">" + Myobj[i].SMP + "</td>";
-        sss+="<td " + disc_style + ">" + Myobj[i].PRICE_B + "</td>";
-
+        sss+="<td>" + SUMMA.toFixed(2) + "</td>";
+        sss+="<td><a onclick=\"globalBasket.splice(" + i + ",1); RenderBasket(globalBasket);\" >X</a></td>";
         sss+="</tr>";
       }
   }
 
-  sss+="</tbody></table></p>Конец таблицы корзина";
-  //var Myobj = JSON.parse(dat); //.sort((a, b) => b["PRICE_ORG"] - a["PRICE_ORG"]));  
-  //    globalObj = Myobj;
+  sss+="</tbody></table></p>";
+  ITOGO=parseFloat(ITOGO).toFixed(2);
+  sss+="Итого:" + ITOGO;
+  
+  var cena_stroki=(ITOGO/(Mybasket.length+1)).toFixed(2);;
+  
+  sss+='<span class=off>Цена строки : ' + cena_stroki + '</span><span id=costLn></span>';
+  sss+='<span class=off>Нц :</span><span id=nacZak></span><br>';
+
 
   $("div#zak_sec").html(sss);
+  $('body, html').scrollTop($("#search-text").offset().top); // проматываем вниз
   console.log('RenderBasket end');
-
 }
 
 function RenderUL(Myobj,idGrp,idChild)
@@ -165,6 +175,11 @@ function ToogleSortByPrice()
   $("div#info_cats").html("");
   $("div#info_cats").html(sss);
 }
+
+
+
+
+
 
 function RenderTable(Myobj,idGrp,idChild)
 {
@@ -310,7 +325,7 @@ function RenderTable(Myobj,idGrp,idChild)
         if(Myobj[i].gflg==0) ///////// если это группа
         {   
           sss+="<td colspan=8 class='grp'>";
-          sss+="<div onclick=\"loadTovs(" + Myobj[i].ID  + "," + idGrp + ")\";>"; /////////////// class='grp' 18-11-2019
+          sss+="<div onclick=\"loadTovs(" + Myobj[i].ID  + "," + idGrp + ", \'" + Myobj[i].NAME + "\' )\";>"; /////////////// class='grp' 18-11-2019
           sss+=Myobj[i].NAME; // + " ( " + Myobj[i].ID + " ) ";
 
           //sss+= "is_child=" + Myobj[i].is_child + " : ";
@@ -380,8 +395,8 @@ function RenderTable(Myobj,idGrp,idChild)
     }
       sss+="</tr>";
   }
-     // $("tbody#tovs").html(sss);
-     return (tab_header + sss + "</tbody></table>");
+
+     return (tab_header + sss + "</tbody></table>" + '<br>Найдено: ' + Myobj.length + ' элементов');
   }
 
 function RenderJSON(Myobj,idGrp,idChild)
@@ -1300,7 +1315,18 @@ function load_journal()
 
 }
 
-function loadTovs(idGrp,idChild)
+
+function HideAllSections()
+{
+  $("div#tov_sec").hide();
+  $("div#zak_sec").hide()
+  $("div#src_sec").hide();
+  $("div#stat_sec").hide();
+  $("div#zalist_sec").hide();
+}
+
+
+function loadTovs(idGrp,idChild,grpname)
 {    
     var ix= frmMain.cbHier.selectedIndex, idHr= frmMain.cbHier.options[ix].value,
     idOrg= frmMain.corg.value,
@@ -1351,7 +1377,7 @@ function loadTovs(idGrp,idChild)
     {
     frmMain.cbHier.selectedIndex= 0; idHr= 0; idGr= 0
     }
-      $("tbody#tovs").html('Идет поиск ...')         
+      //$("tbody#tovs").html('Идет поиск ...')         
       //alert(dat);
       var Myobj = JSON.parse(dat); //.sort((a, b) => b["PRICE_ORG"] - a["PRICE_ORG"]));  
       globalObj = Myobj;
@@ -1361,9 +1387,31 @@ function loadTovs(idGrp,idChild)
       //if(div_name==undefined)
       var div_name="div#info_cats";
       //alert('выводим таблицу в слой ' + div_name);
-      $(div_name).html(s);
-   
-      $("div#elem_count_info").html('Найдено: ' + Myobj.length + ' элементов');
+            
+      if(grpname=="Результаты поиска")
+      {
+        $("div#src_sec").html("<h3>" + grpname + "</h3>" + s);
+        HideAllSections();
+        $("div#src_sec").show();
+      }
+      else
+      {
+        if(grpname==undefined)
+        {
+          if(idGrp==200001)
+             $("div#tov_sec").html("<h3>Базовая</h3>" + s);
+          if(idGrp==288125)
+             $("div#tov_sec").html("<h3>Категории</h3>" + s);
+        }
+        else
+        {
+          $("div#tov_sec").html("<h3>" + grpname + "</h3>" + s);
+        }
+
+        HideAllSections();
+        $("div#tov_sec").show();
+      }
+
       $('body, html').scrollTop($("#search-text").offset().top); // проматываем вниз
 
       $("#table").on( "click", "tr", function(){
@@ -1418,40 +1466,16 @@ function loadTovs_Statistic()
     data: {'par': par, org: idOrg, adr: idAdr, dt: datZ, ago: daysAgo },
     success: function(dat, stat,xmlReq) 
     {
-      //alert(dat);
-      //debugger;
       var Myobj = JSON.parse(dat);
       globalObj = Myobj;
-      //alert('loadTovs_Statistic: кол-во элементов=' + Myobj.length-1);
-
       var s=RenderJSON(Myobj,0,0); 
-      var div_name="div#info_cats";
-      //alert('выводим таблицу в слой ' + div_name);
-      $(div_name).html(s);
-
+      
+      $("div#stat_sec").html(s);
+      HideAllSections();
+      $("div#stat_sec").show();
 
       $('body, html').scrollTop($(document).height()); // проматываем вниз
-      //$('body, html').scrollTop($("#search-text").offset().top); // проматываем вниз
-
       $("tbody#tovs td:nth-child("+(1+cNAME)+")[desc=1]").addClass('desc').on('click',  function(ev) { console.log($(this).attr('id_tov'));
-        
-      /*$.ajax({
-        type: 'POST',
-        url: "mk_order_desc.php",
-        dataType: 'json',
-        cache: false,
-        data: {
-          id_tov: $(this).attr('id_tov'),
-          id_grp: $(this).parent().attr('cgrp'),
-          n_grp: $(this).parent().attr('ngrp')
-        },
-        success: function(data){
-            alert(data);
-        },
-        error: function(xmlReq,stat, err) { alert("loadTov: "+stat+" ajax : "+err)},
-        complete: function(xmlReq,stat) { }
-      });*/
- 
      })
 
     },
@@ -1485,13 +1509,11 @@ function loadTovs_Zalistovka()
       //alert('loadTovs_Zalistovka: кол-во элементов=' + (Myobj.length-1));
 
       var s=RenderJSON(Myobj,0,0); 
-      div_name="div#info_cats";
-      //alert('выводим таблицу в слой ' + div_name);
-      $(div_name).html(s);
+      HideAllSections();
+      $("div#zalist_sec").html(s);
+      $("div#zalist_sec").show();
       $('body, html').scrollTop($(document).height()); // проматываем вниз
       
-      //$("tbody#tovs").html(dat)
-
       $("tbody#tovs td:nth-child("+(1+cKOL)+")").on('click',
           function(ev){ openKolDlg($(this),0)
       })

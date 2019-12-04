@@ -33,10 +33,11 @@ if (isset ( $_REQUEST ['id'] ) && isset ( $_REQUEST ['par'] )) {
 		$tab = '';
 		$iL = 0;
 
-		echo "[{";
+		echo "[";
 
 		while ( $row = $db->fetch_cursor ( $cur ) ) 
 		{
+			echo "{";
 			$disc = ($row ['PRICE_B'] > 0 ? round ( (1 - $row ['PRICE'] / $row ['PRICE_B']) * 100, 2 ) : 0);
 			$maxdisc = ($row ['PRICE'] > 0 ? round ( (1 - $row ['SMP'] / $row ['PRICE']) * 100, 2 ) : 0);
 			$maxdiscB = ($row ['PRICE_B'] > 0 ? round ( (1 - $row ['SMP'] / $row ['PRICE_B']) * 100, 2 ) : 0);

@@ -40,7 +40,7 @@ $mtime= filemtime(basename($_SERVER['SCRIPT_NAME']));
 </style>
 <script src="js/jquery-1.3.2.min.js"></script>
 <script src="js/jquery-ui.min.js"></script>
-<script src="js/jqlib.js?534753475893" ></script>
+<script src="js/tnt_jqlib.js?534753475893" ></script>
 
 <script>
 

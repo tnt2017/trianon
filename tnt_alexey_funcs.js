@@ -348,18 +348,20 @@ function changeDoc()
         data: {'id' : idDoc, 'par': par},
         success: function(dat,stat,xmlReq) 
         {
-          //alert(dat);
+          alert(dat);
           
           globalBasket=JSON.parse("[]"); 
           for(var i=0;i<dat.length-1;i++)
           {
             console.log('name=' + dat[i].NAME);
-            debugger;
+            //debugger;
             globalBasket.push(dat[i]);
           }
 
+          //$("div#tov_sec").hide()
+          HideAllSections();
           RenderBasket(globalBasket);
-          $("div#tov_sec").hide()
+
           $("div#zak_sec").show();
 
           /*

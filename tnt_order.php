@@ -101,9 +101,11 @@ function vvod(){
 function steret() {
   document.getElementById("poisk").value="";
   document.getElementById("otmena").style.display="none";
-  alert('убираем вьюху поиска');
-  $("div#info_poisk").hide();
-  $("div#info_cats").show();
+  console.log('убираем вьюху поиска');
+  $("div#zak_sec").hide()
+  $("div#src_sec").hide();
+  $("div#tov_sec").show();
+
 };
 
 
@@ -432,23 +434,37 @@ $(document.body).ready(function() {
     });
 
 //   makeBuddy( $("input[name=sOrg]"), {}, "tds", enterOrg, "org_sel_p.php", deleteOrg)
-  $("select[name=cbGruz], select[name=cbAddr], input[name=sRem], input[name=sTov]")
-  .addClass('org')
+
+  $("select[name=cbGruz], select[name=cbAddr], input[name=sRem], input[name=sTov]").addClass('org')
   $("div#tov_sec, div#zak_sec").hide()
   $("table#props td:nth-child(3)").css({'padding-left' : '20px'})
+
   $("input[name=bnToCart], input[name=bnToCart2]").on('click',function() {
-    $("div#tov_sec").hide()
+    HideAllSections()
     $("div#zak_sec").show()
-
-    //globalBasket.push( globalObj[5] );  // тестим добавление в корзину
-
     RenderBasket(globalBasket);
   })
+
   $("input[name=bnToTov], input[name=bnToTov2]").on('click',function() {
-    $("div#zak_sec").hide()
+    HideAllSections()
     $("div#tov_sec").show()
   })
 
+  $("input[name=bnToSearch], input[name=bnToSearch2]").on('click',function() {
+    HideAllSections()
+    $("div#src_sec").show()
+  })
+
+  $("input[name=bnToStat], input[name=bnToStat2]").on('click',function() {
+    HideAllSections()
+    $("div#stat_sec").show()
+  })
+
+  $("input[name=bnToZalist], input[name=bnToZalist2]").on('click',function() {
+    HideAllSections()
+    $("div#zalist_sec").show()
+  })
+  
   $("select[name=cbDoc]").change(changeDoc)
 
   $("img#dn1").on('click',function() {
@@ -619,14 +635,14 @@ $(document.body).ready(function() {
     $("#grpname").text(". ").attr('idval',0)
     aGrp.size= 0
     //alert('вызов из поиска');
-    loadTovs(-1,0,'div#info_poisk');
+    loadTovs(-1,0,'Результаты поиска');
   })
   
   //$("input[name=bnProZak]").on('click',loadTovs_Statistic); ///// заказ по статистике 
   //$("input[name=bnZalZak]").on('click',loadTovs_Zalistovka); /// заказ по залистовке
-
   //$("#dn1").hide()
   // digit pad, use eKol
+
   $("#bn01").on('click',function() { eKol.text(eKol.text()+'1') })
   $("#bn02").on('click',function() { eKol.text(eKol.text()+'2') })
   $("#bn03").on('click',function() { eKol.text(eKol.text()+'3') })
@@ -993,9 +1009,6 @@ $(document.body).ready(function() {
 
 <?  /************* корзина  *********************/ ?>
 
-<div id=zak_sec>
-
-</div>
 
 <?php
   } // login is valid
@@ -1011,10 +1024,13 @@ catch(Exception $e) {
 
 
 
-<div id=tov_sec >
-  <div id="info_cats" style="width: 100%"></div>
-  <div id="info_poisk" style="width: 100%"></div>
-</div>
+<div id=zak_sec></div>
+<div id=tov_sec ></div>
+<div id=src_sec ></div>
+<div id=stat_sec ></div>
+<div id=zalist_sec ></div>
+
+
 
 <div align="center" id="elem_count_info" style="width: 100%"></div>
 
